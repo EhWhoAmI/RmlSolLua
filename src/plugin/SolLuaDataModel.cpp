@@ -79,6 +79,22 @@ namespace Rml::SolLua
 	{
 		// Child should be called on a table.
 		auto object = static_cast<sol::object*>(ptr);
+		if (object->get_type() == sol::type::userdata) {
+			auto userdata = object->as<sol::userdata>();
+			std::string ptrstr = std::to_string(reinterpret_cast<intptr_t>(object->pointer()));
+			sol::object child;
+			if (address.index == -1) {
+				child = userdata[address.name];
+			} else {
+				child = userdata[address.index];
+			}
+			if (child.get_type() == sol::type::lua_nil) {
+				return DataVariable{};
+			}
+			auto it = m_model->ObjectList.insert_or_assign(ptrstr + "_" + address.name, child);
+			return DataVariable{m_model->ObjectDef.get(), &(it.first->second)};
+		}
+
 		if (object->get_type() != sol::type::table)
 			return DataVariable{};
 

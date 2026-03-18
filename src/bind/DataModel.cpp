@@ -16,6 +16,7 @@ namespace Rml::SolLua
 
 		static void dataModelSet(SolLuaDataModel& self, const std::string& name, sol::object value, sol::this_state s)
 		{
+			self.ObjectList.insert_or_assign(name, value);
 			self.Handle.DirtyVariable(name);
 			self.Table.set(name, value);
 		}
