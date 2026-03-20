@@ -89,6 +89,14 @@ namespace Rml::SolLua
 				return my_pos == other_pos;
 			}
 
+			auto operator!=(const Iter& other) const
+			{
+				auto max = m_owner->m_func_max();
+				auto my_pos = std::min(m_pos, max);
+				auto other_pos = std::min(other.m_pos, max);
+				return my_pos != other_pos;
+			}
+
 			auto operator*() const
 			{
 				return m_owner->m_func_get(m_pos);
