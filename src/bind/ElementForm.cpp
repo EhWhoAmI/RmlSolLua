@@ -184,8 +184,8 @@ namespace Rml::SolLua
 		);
 
 		lua.new_usertype<options::SelectOptionsProxyNode>("SelectOptionsProxyNode", sol::no_constructor,
-			"element", &options::SelectOptionsProxyNode::Element,
-			"value", &options::SelectOptionsProxyNode::Value
+			"element", sol::property([](const options::SelectOptionsProxyNode& self) { return self.Element; }),
+			"value", sol::property([](const options::SelectOptionsProxyNode& self) { return self.Value; })
 		);
 
 		lua.new_usertype<Rml::ElementFormControlSelect>("ElementFormControlSelect", sol::no_constructor,
