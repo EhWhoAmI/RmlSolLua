@@ -44,9 +44,9 @@ namespace Rml::SolLua
 			),
 			sol::meta_function::unary_minus, sol::resolve<Rml::Vector2f() const>(&Rml::Vector2f::operator-),
 
-			// G+S
-			"x", &Rml::Vector2f::x,
-			"y", &Rml::Vector2f::y,
+			// G+S			
+			"x", sol::property([](Rml::Vector2f& self) { return self.x; }, [](Rml::Vector2f& self, float x) { self.x = x; }),
+			"y", sol::property([](Rml::Vector2f& self) { return self.y; }, [](Rml::Vector2f& self, float y) { self.y = y; }),
 
 			// G
 			"magnitude", &Rml::Vector2f::Magnitude
