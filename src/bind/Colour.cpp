@@ -34,10 +34,10 @@ namespace Rml::SolLua
 			sol::meta_function::equal_to, &Rml::Colourb::operator==,
 
 			// G+S
-			"red", &Rml::Colourb::red,
-			"green", &Rml::Colourb::green,
-			"blue", &Rml::Colourb::blue,
-			"alpha", &Rml::Colourb::alpha,
+			"red", sol::property([](Rml::Colourb& self) { return self.red; }, [](Rml::Colourb& self, Rml::byte v) { self.red = v; }),
+			"green", sol::property([](Rml::Colourb& self) { return self.green; }, [](Rml::Colourb& self, Rml::byte v) { self.green = v; }),
+			"blue", sol::property([](Rml::Colourb& self) { return self.blue; }, [](Rml::Colourb& self, Rml::byte v) { self.blue = v; }),
+			"alpha", sol::property([](Rml::Colourb& self) { return self.alpha; }, [](Rml::Colourb& self, Rml::byte v) { self.alpha = v; }),
 			"rgba", sol::property(static_cast<ColourbTuple(*)(Rml::Colourb&)>(&getRGBA), static_cast<void(*)(Rml::Colourb&, ColourbTuple)>(&setRGBA))
 		);
 
@@ -50,10 +50,10 @@ namespace Rml::SolLua
 			sol::meta_function::equal_to, &Rml::Colourf::operator==,
 
 			// G+S
-			"red", &Rml::Colourf::red,
-			"green", &Rml::Colourf::green,
-			"blue", &Rml::Colourf::blue,
-			"alpha", &Rml::Colourf::alpha,
+			"red", sol::property([](Rml::Colourf& self) { return self.red; }, [](Rml::Colourf& self, float v) { self.red = v; }),
+			"green", sol::property([](Rml::Colourf& self) { return self.green; }, [](Rml::Colourf& self, float v) { self.green = v; }),
+			"blue", sol::property([](Rml::Colourf& self) { return self.blue; }, [](Rml::Colourf& self, float v) { self.blue = v; }),
+			"alpha", sol::property([](Rml::Colourf& self) { return self.alpha; }, [](Rml::Colourf& self, float v) { self.alpha = v; }),
 			"rgba", sol::property(static_cast<ColourfTuple(*)(Rml::Colourf&)>(&getRGBA), static_cast<void(*)(Rml::Colourf&, ColourfTuple)>(&setRGBA))
 		);
 		// clang-format on
