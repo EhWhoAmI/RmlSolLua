@@ -23,8 +23,8 @@ namespace Rml::SolLua
 			sol::meta_function::unary_minus, sol::resolve<Rml::Vector2i() const>(&Rml::Vector2i::operator-),
 
 			// G+S
-			"x", &Rml::Vector2i::x,
-			"y", &Rml::Vector2i::y,
+			"x", sol::property([](Rml::Vector2i& self) { return self.x; }, [](Rml::Vector2i& self, int x) { self.x = x; }),
+			"y", sol::property([](Rml::Vector2i& self) { return self.y; }, [](Rml::Vector2i& self, int y) { self.y = y; }),
 
 			// G
 			"magnitude", &Rml::Vector2i::Magnitude
